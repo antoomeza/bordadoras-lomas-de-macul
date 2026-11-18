@@ -1,0 +1,161 @@
+/* ===== Tipografía propia ===== */
+@font-face {
+  font-family: "Bordadoras";
+  src: url("../assets/fonts/bordadoras-macul.ttf") format("truetype");
+  font-display: swap;
+}
+
+/* ===== Colores del diseño ===== */
+:root {
+  --crema: #fdfcf6;
+  --azul: #2e599f;
+  --rosa: #fd598e;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  background: var(--crema);
+  color: #000;
+  font-family: "Open Sans", system-ui, sans-serif;
+  font-size: clamp(16px, 1.39vw, 20px);
+  line-height: 1.4;
+  overflow-x: clip;
+}
+
+/* La tipografía propia solo tiene mayúsculas */
+.display { font-family: "Bordadoras", sans-serif; text-transform: uppercase; font-weight: normal; }
+
+/* ===== Menú fijo (5 secciones) ===== */
+.menu {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.menu a {
+  height: clamp(28px, 2.78vw, 40px);
+  display: grid;
+  place-items: center;
+  padding-top: .2em; /* ajuste fino de centrado vertical */
+  background: var(--rosa);
+  color: var(--crema);
+  text-decoration: none;
+  font-size: clamp(11px, 2.5vw, 36px);
+  line-height: 1;
+  white-space: nowrap;
+}
+.menu a[aria-current="page"], .menu a:hover { background: var(--azul); }
+
+/* ===== Portada: collage de bordados ===== */
+.portada { overflow: hidden; }
+.collage {
+  position: relative;
+  container-type: inline-size;
+  width: max(100%, 900px);
+  max-width: 1440px;
+  aspect-ratio: 1440 / 760;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.collage img {
+  position: absolute;
+  left: var(--x); top: var(--y); width: var(--w);
+  height: auto;
+  transform: translate(-50%, -50%) rotate(var(--r));
+}
+.titulo {
+  position: absolute;
+  left: 50%; top: 34.24%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex; flex-direction: column; align-items: center;
+  gap: .15em;
+  font-size: 7.135cqw;
+  white-space: nowrap;
+}
+.titulo span {
+  display: block;
+  height: .708em;
+  padding: .185em .21em 0;
+  background: var(--rosa);
+  color: var(--crema);
+  line-height: .55;
+}
+
+/* ===== Texto de introducción ===== */
+.intro {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: clamp(48px, 8vw, 120px) 0 clamp(60px, 9.5vw, 137px);
+  display: grid;
+  gap: clamp(40px, 7vw, 100px);
+}
+.bloque { display: flex; gap: min(1.285vw, 18.5px); align-items: flex-start; }
+.bloque p { flex: 0 1 610px; }
+.bloque:nth-child(2) p { flex-basis: 607px; }
+.bloque:nth-child(1) { margin-left: 9.86%; }
+.bloque:nth-child(2) { margin-left: 31.32%; }
+.costura { flex: none; width: clamp(30px, 3.61vw, 52px); height: auto; margin-top: .25em; }
+.bloque:nth-child(2) .costura { margin-top: .1em; }
+
+/* ===== Cita ===== */
+.cita {
+  background: var(--azul);
+  color: var(--crema);
+  font-style: italic;
+  padding: clamp(32px, 3.6vw, 52px) 24px clamp(32px, 3.9vw, 56px);
+}
+.cita div { max-width: 728px; margin: 0 auto; }
+.cita blockquote { font-size: clamp(22px, 2.5vw, 36px); text-align: center; line-height: 1.35; }
+.cita p { font-size: clamp(16px, 1.67vw, 24px); text-align: right; margin-top: 1em; }
+
+/* ===== Accesos a las secciones ===== */
+.accesos {
+  position: relative;
+  container-type: inline-size;
+  max-width: 1440px;
+  margin: 0 auto;
+  aspect-ratio: 1440 / 1081;
+}
+.tarjeta {
+  position: absolute;
+  left: var(--x); top: var(--y);
+  width: var(--w);
+  aspect-ratio: var(--ar);
+  transform: translate(-50%, -50%) rotate(var(--r));
+  display: block;
+  text-decoration: none;
+}
+.tarjeta .foto { position: absolute; inset: 0; display: block; }
+.tarjeta .foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tarjeta .duo { opacity: 0; transition: opacity .25s ease; }
+.tarjeta:hover .duo, .tarjeta:focus-visible .duo { opacity: 1; }
+.tarjeta .etiqueta {
+  position: absolute; left: 0; right: 0; top: 100%;
+  margin-top: 1.42cqw;
+  display: grid; place-items: center;
+  height: 1em;
+  padding-top: .16em; /* ajuste fino de centrado vertical */
+  font-size: 3.05cqw;
+  background: var(--rosa);
+  color: var(--crema);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.pie { height: clamp(40px, 5.8vw, 84px); background: var(--azul); }
+
+/* ===== Móvil y tablet ===== */
+@media (max-width: 800px) {
+  .menu { display: flex; overflow-x: auto; scrollbar-width: none; }
+  .menu::-webkit-scrollbar { display: none; }
+  .menu a { flex: 0 0 auto; height: 38px; padding: .2em 20px 0; font-size: 20px; }
+
+  .bloque, .bloque:nth-child(1), .bloque:nth-child(2) { margin: 0 24px; gap: 16px; }
+
+  .accesos { aspect-ratio: auto; display: flex; flex-direction: column; align-items: center; gap: 100px; padding: 64px 0 90px; }
+  .tarjeta { position: static; width: min(78vw, 300px); transform: rotate(var(--r)); }
+  .tarjeta .etiqueta { font-size: 30px; margin-top: 20px; }
+}

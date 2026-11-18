@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El archivo · Bordadoras Lomas de Macul</title>
+  <meta name="description" content="Archivo de bordados de las Bordadoras Lomas de Macul: explora la colección o filtra por autora, año, temática y localidad.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;1,400&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/archivo.css">
+  <link rel="stylesheet" href="css/aportar.css">
+</head>
+<body class="archivo" data-modo="explorar">
+
+  <nav class="menu display" aria-label="Principal">
+    <a href="index.html">inicio</a>
+    <a href="historia-del-taller.html">historia del taller</a>
+    <a href="el-archivo.html" aria-current="page">el archivo</a>
+    <a href="sobre-el-proyecto.html">sobre el proyecto</a>
+    <a href="donde-encontrarlas.html">donde encontrarlas</a>
+  </nav>
+
+  <header class="barra" id="barra">
+    <div class="barra-fila">
+      <button type="button" class="tab" data-modo="explorar" aria-pressed="true"><span>explorar</span></button>
+      <button type="button" class="tab" data-modo="categorias" aria-pressed="false"><span>categorías</span></button>
+      <button type="button" class="tab aportar" id="b-aportar" aria-haspopup="dialog"><span>aportar al archivo</span></button>
+    </div>
+    <div class="cats" id="cats"></div>
+    <div class="subs" id="subs"></div>
+  </header>
+
+  <section class="explorar" id="explorar" aria-label="Explorar el archivo (arrastra para recorrer)">
+    <div class="plano" id="plano"></div>
+  </section>
+
+  <section class="categorias" id="categorias" aria-label="Archivo por categorías">
+    <div class="rejilla" id="rejilla"></div>
+    <p class="vacio display" id="vacio" hidden>ningún bordado con esta combinación</p>
+    <footer class="pie"></footer>
+  </section>
+
+  <section class="ficha" id="ficha" aria-label="Ficha del bordado">
+    <div class="ficha-pag">
+      <button type="button" class="volver" id="f-volver"><span>volver al archivo</span></button>
+      <div class="f-ancho">
+        <div class="f-cuerpo">
+          <div class="f-img" id="f-imgbox"><img id="f-img" alt=""></div>
+          <div class="f-lado">
+            <h2 class="display" id="f-nombre"></h2>
+            <div class="f-texto">
+              <blockquote class="f-cita" id="f-cita"><p class="f-q" id="f-q"></p><p class="f-qa" id="f-qa"></p></blockquote>
+              <p class="f-rep" id="f-rep"></p>
+            </div>
+          </div>
+        </div>
+        <div class="f-tabla">
+          <div class="f-col" id="f-col1"></div>
+          <div class="f-vert" aria-hidden="true"></div>
+          <div class="f-col" id="f-col2"></div>
+        </div>
+        <div class="f-otras"><p>Otras categorías:</p><div class="f-chips" id="f-chips"></div></div>
+      </div>
+      <footer class="pie"></footer>
+    </div>
+  </section>
+
+  <!-- Invitación a aportar -->
+  <div class="aviso" id="aviso-aportar" role="dialog" aria-modal="true" aria-labelledby="a-tit" hidden>
+    <div class="aviso-caja">
+      <div class="aviso-tit"><h2 class="etq" id="a-tit"><span>Ayúdanos a seguir construyendo este archivo</span></h2></div>
+      <p class="fuerte">¿Tienes un bordado de las Lomas de Macul?</p>
+      <p style="margin-top:16px">A lo largo de los años, las Bordadoras Lomas de Macul han creado numerosas obras que hoy se encuentran en distintos hogares, colecciones e instituciones.</p>
+      <p>Si tienes uno de sus bordados, <b>¡te invitamos a ser parte de este archivo!</b></p>
+      <p>A través de tu aporte, podemos conocer nuevas piezas, recuperar parte de su historia y contribuir a la preservación del trabajo de las bordadoras Lomas de Macul.</p>
+      <div class="aviso-botones">
+        <a class="etq azul" href="aportar.html" id="a-ir"><span>contribuir al archivo</span></a>
+        <button type="button" class="etq crema" id="a-cerrar"><span>ahora no</span></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="data/bordados.js"></script>
+  <script src="js/archivo.js"></script>
+</body>
+</html>

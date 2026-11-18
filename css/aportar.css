@@ -1,0 +1,78 @@
+/* ===== Aportar al archivo: aviso, formulario y agradecimiento ===== */
+button { font: inherit; border-radius: 0; }
+
+/* Rótulos con la tipografía propia (mismo centrado calculado que las pestañas) */
+.etq {
+  box-sizing: border-box; display: inline-block; height: 30px; padding: 0 10px;
+  font-family: "Bordadoras", sans-serif; text-transform: uppercase; font-weight: normal; font-size: 30px;
+  color: var(--crema); background: var(--rosa); border: 0; white-space: nowrap; text-decoration: none;
+}
+.etq > span { display: block; height: 100%; line-height: 1.21; }
+.etq.azul { background: var(--azul); }
+.etq.crema { background: var(--crema); color: var(--azul); }
+button.etq, a.etq { cursor: pointer; }
+button.etq:hover, a.etq:hover { filter: brightness(.92); }
+
+/* ----- Avisos (ventana sobre la página) ----- */
+.aviso { position: fixed; inset: 0; z-index: 200; display: none; place-items: center; padding: 16px; background: rgba(46, 89, 159, .55); overflow: auto; }
+.aviso.abierto { display: grid; }
+.aviso-caja { width: min(608px, 100%); background: var(--rosa); color: var(--crema); padding: 36px clamp(20px, 8.4%, 51px) 42px; font-size: 16px; line-height: normal; }
+.aviso-tit { display: flex; justify-content: center; margin-bottom: 29px; }
+.aviso-tit .etq { background: var(--azul); height: 30px; font-size: 30px; max-width: 100%; white-space: normal; }
+.aviso-caja p { margin: 0 0 10px; }
+.aviso-caja p.fuerte { font-weight: 700; }
+.aviso-caja b { font-weight: 700; }
+.aviso-botones { display: flex; flex-wrap: wrap; gap: 14px 24px; margin-top: 30px; }
+.aviso-botones.centro { justify-content: center; margin-top: 38px; }
+.aviso .etq.azul:hover { background: var(--azul); filter: brightness(1.15); }
+
+/* ----- Página del formulario ----- */
+body.aportar { background: var(--crema); }
+.ap-cab { display: flex; justify-content: center; margin-top: 100px; }
+.ap-tit { --fs: clamp(34px, 4.17vw, 60px); height: calc(var(--fs) * .8334); padding: 0 10px; font-size: var(--fs); }
+.ap-tit > span { line-height: calc(.8334 + .28); }
+.ap-panel { width: min(816px, calc(100% - 32px)); margin: 58px auto 0; background: var(--azul); color: var(--crema); padding: 45px clamp(20px, 6.7vw, 55px) 83px; font-size: 16px; line-height: normal; }
+.ap-panel p { margin: 0; }
+.ap-intro p + p { margin-top: 16px; }
+.ap-intro b { font-weight: 700; }
+.ap-seccion { margin-top: 28px; }
+.ap-seccion + .ap-seccion { margin-top: 65px; }
+.ap-seccion .etq { display: block; width: max-content; margin-bottom: 25px; }
+.ap-campo { margin-top: 28px; }
+.ap-seccion .etq + .ap-campo { margin-top: 0; }
+.ap-campo > label:not(.ap-sube):not(.ap-opcion), .ap-campo > .ap-q { display: block; font-weight: 700; margin-bottom: 13px; }
+.ap-campo .ap-ayuda { margin-top: 15px; }
+
+.ap-in {
+  display: block; width: 100%; height: 43px; border: 0; border-radius: 0; padding: 0 14px;
+  background: var(--crema); color: var(--azul); font: 400 16px "Open Sans", system-ui, sans-serif;
+}
+textarea.ap-in { height: 75px; padding: 12px 14px; resize: vertical; }
+.ap-in:focus-visible, .ap-sube:focus-within, .ap-opcion input:focus-visible { outline: 3px solid var(--rosa); outline-offset: 2px; }
+
+/* Caja para subir fotografías */
+.ap-sube { display: grid; place-items: center; align-content: center; gap: 22px; height: 185px; background: var(--crema); color: var(--azul); cursor: pointer; text-align: center; padding: 0 16px; }
+.ap-sube svg { width: 56px; height: 56px; }
+.ap-sube input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.ap-sube span { font-size: 16px; font-weight: 400; }
+
+/* Opciones circulares (la elegida va rellena) */
+.ap-opcion { display: grid; grid-template-columns: 22px 1fr; column-gap: 11px; align-items: start; cursor: pointer; }
+.ap-opcion + .ap-opcion { margin-top: 15px; }
+.ap-opcion input { appearance: none; -webkit-appearance: none; margin: 0; width: 22px; height: 22px; border: 2px solid var(--crema); border-radius: 50%; background: transparent; cursor: pointer; flex: none; }
+.ap-opcion input:checked { background: var(--crema); }
+.ap-opcion span { line-height: 22px; }
+.ap-opcion.larga span { line-height: normal; padding-top: 2px; }
+.ap-radios .ap-opcion + .ap-opcion { margin-top: 5px; }
+
+.ap-envio { display: flex; justify-content: center; margin-top: 73px; }
+.ap-pie { margin-top: clamp(80px, 15vw, 216px); }
+
+@media (max-width: 900px) {
+  .ap-cab { margin-top: 56px; }
+  .ap-panel { margin-top: 36px; padding-bottom: 56px; }
+  .ap-seccion + .ap-seccion { margin-top: 48px; }
+  .aviso-caja { padding-top: 28px; padding-bottom: 32px; }
+  .aviso-tit .etq { height: auto; min-height: 30px; }
+  .aviso-tit .etq > span { line-height: 1.1; padding: 5px 0; }
+}

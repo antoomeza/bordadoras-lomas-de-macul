@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comparte tu bordado · Bordadoras Lomas de Macul</title>
+  <meta name="description" content="Aporta al archivo de las Bordadoras Lomas de Macul: comparte la fotografía y la información de un bordado.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/aportar.css">
+</head>
+<body class="aportar">
+
+  <nav class="menu display" aria-label="Principal">
+    <a href="index.html">inicio</a>
+    <a href="historia-del-taller.html">historia del taller</a>
+    <a href="el-archivo.html" aria-current="page">el archivo</a>
+    <a href="sobre-el-proyecto.html">sobre el proyecto</a>
+    <a href="donde-encontrarlas.html">donde encontrarlas</a>
+  </nav>
+
+  <main>
+    <div class="ap-cab"><h1 class="etq ap-tit"><span>comparte tu bordado</span></h1></div>
+
+    <form class="ap-panel" id="form-aporte" novalidate>
+      <div class="ap-intro">
+        <p>Completa el formulario con la información que conozcas sobre la obra. No te preocupes si no cuentas con todos los datos, <b>¡cada aporte es valioso y nos ayuda a seguir construyendo este archivo!</b></p>
+        <p>Ten en cuenta que, antes de incorporarse al archivo, cada bordado será revisado para verificar la información proporcionada.</p>
+      </div>
+
+      <section class="ap-seccion">
+        <h2 class="etq"><span>Sobre la obra</span></h2>
+
+        <div class="ap-campo">
+          <p class="ap-q" id="q-foto">1. Fotografía</p>
+          <label class="ap-sube" for="f-fotos">
+            <svg viewBox="0 0 56 56" fill="none" stroke="#2e599f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="48" height="48" rx="4"/><circle cx="19" cy="19" r="4"/><path d="M4 40l14-13 10 9 8-7 16 14"/></svg>
+            <span id="t-fotos">Sube fotografías de la obra</span>
+            <input type="file" id="f-fotos" accept="image/*" multiple aria-labelledby="q-foto">
+          </label>
+          <p class="ap-ayuda">Sube una fotografía de buena calidad, bien iluminada y enfocada, en la que se vea el bordado completo. Puedes agregar imágenes de sus detalles, firmas o inscripciones.</p>
+        </div>
+
+        <div class="ap-campo">
+          <label for="f-autora">2. ¿Conoces el nombre de la bordadora?</label>
+          <input class="ap-in" id="f-autora" type="text" autocomplete="off">
+          <p class="ap-ayuda">Si no conoces la autoría, deja este espacio en blanco.</p>
+        </div>
+
+        <div class="ap-campo">
+          <label for="f-anio">3. ¿En qué año fue realizado?</label>
+          <input class="ap-in" id="f-anio" type="text" autocomplete="off">
+          <p class="ap-ayuda">Puedes indicar una fecha aproximada.</p>
+        </div>
+
+        <div class="ap-campo">
+          <label for="f-historia">4. ¿Qué historia conoces sobre el bordado?</label>
+          <textarea class="ap-in" id="f-historia"></textarea>
+          <p class="ap-ayuda">Cómo llegó a tus manos, dónde fue adquirido, recuerdos asociados a la obra...</p>
+        </div>
+
+        <div class="ap-campo">
+          <label for="f-medidas">5. ¿Conoces sus dimensiones?</label>
+          <input class="ap-in" id="f-medidas" type="text" autocomplete="off">
+          <p class="ap-ayuda">Indica el alto y el ancho.</p>
+        </div>
+      </section>
+
+      <section class="ap-seccion">
+        <h2 class="etq"><span>Sobre tu aporte</span></h2>
+
+        <div class="ap-campo">
+          <label for="f-nombre">1. Tu nombre</label>
+          <input class="ap-in" id="f-nombre" type="text" autocomplete="name">
+        </div>
+
+        <div class="ap-campo">
+          <label for="f-correo">2. Correo electrónico</label>
+          <input class="ap-in" id="f-correo" type="email" autocomplete="email">
+          <p class="ap-ayuda">Solo lo utilizaremos para comunicarnos contigo sobre tu aporte.</p>
+        </div>
+
+        <div class="ap-campo">
+          <label for="f-lugar">3. ¿Dónde se encuentra actualmente el bordado?</label>
+          <input class="ap-in" id="f-lugar" type="text" autocomplete="off">
+          <p class="ap-ayuda">No es necesario compartir una dirección exacta.</p>
+        </div>
+
+        <fieldset class="ap-campo ap-radios" style="border:0;padding:0;margin-inline:0;min-width:0">
+          <legend class="ap-q" style="padding:0;font-weight:700;margin-bottom:13px">4. ¿Te gustaría aparecer en los agradecimientos del archivo?</legend>
+          <label class="ap-opcion"><input type="radio" name="agradecimiento" value="nombre"><span>Sí, con mi nombre</span></label>
+          <label class="ap-opcion"><input type="radio" name="agradecimiento" value="anonimo" checked><span>Prefiero que mi aporte sea anónimo</span></label>
+        </fieldset>
+      </section>
+
+      <section class="ap-seccion">
+        <h2 class="etq"><span>autorizaciones</span></h2>
+        <label class="ap-opcion larga"><input type="checkbox" id="f-aut1"><span>Autorizo el uso y la publicación de las fotografías enviadas en el archivo digital, para fines de documentación, investigación y difusión cultural, y declaro contar con los permisos necesarios para compartirlas.</span></label>
+        <label class="ap-opcion larga"><input type="checkbox" id="f-aut2"><span>He leído cómo serán utilizados mis datos personales y comprendo que mi aporte será revisado antes de su publicación.</span></label>
+      </section>
+
+      <div class="ap-envio"><button type="submit" class="etq" id="b-enviar"><span>Compartir mi aporte</span></button></div>
+    </form>
+
+    <footer class="pie ap-pie"></footer>
+  </main>
+
+  <!-- Agradecimiento (se muestra al compartir el aporte) -->
+  <div class="aviso" id="aviso-gracias" role="dialog" aria-modal="true" aria-labelledby="g-tit" hidden>
+    <div class="aviso-caja">
+      <div class="aviso-tit"><h2 class="etq" id="g-tit"><span>gracias por ser parte de este archivo</span></h2></div>
+      <p class="fuerte">Tu aporte nos ayuda a seguir reconstruyendo y preservando la historia de las Bordadoras Lomas de Macul.</p>
+      <p style="margin-top:28px">La información enviada será revisada antes de incorporarse al archivo. Si necesitamos conocer más detalles sobre la obra, nos pondremos en contacto contigo.</p>
+      <div class="aviso-botones centro"><a class="etq azul" href="el-archivo.html" id="g-volver"><span>volver al archivo</span></a></div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var form = document.getElementById('form-aporte'), gracias = document.getElementById('aviso-gracias');
+    var fotos = document.getElementById('f-fotos'), tFotos = document.getElementById('t-fotos');
+    fotos.addEventListener('change', function () {                       // solo muestra cuántas fotos se eligieron
+      var n = fotos.files.length;
+      tFotos.textContent = n === 0 ? 'Sube fotografías de la obra' : (n === 1 ? '1 fotografía seleccionada' : n + ' fotografías seleccionadas');
+    });
+    function abrir() { gracias.hidden = false; gracias.classList.add('abierto'); document.getElementById('g-volver').focus(); }
+    form.addEventListener('submit', function (e) { e.preventDefault(); abrir(); });   // por ahora no envía nada
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && gracias.classList.contains('abierto')) { gracias.classList.remove('abierto'); gracias.hidden = true; } });
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+/* ===== El archivo: explorar (lienzo que se arrastra) y categorías (rejilla filtrable) ===== */
+:root { --menu: clamp(28px, 2.78vw, 40px); }
+body.archivo { background: var(--crema); }
+body.archivo[data-modo="explorar"] { overflow: hidden; }
+button { font: inherit; border-radius: 0; }
+
+/* ----- Barra azul fija bajo el menú ----- */
+.barra {
+  position: sticky; top: var(--menu); z-index: 9;
+  background: var(--azul);
+  padding: 25px 104px 30px;
+}
+.barra-fila { display: flex; align-items: flex-start; }
+.tab, .chip {
+  box-sizing: border-box; display: block; padding: 0 10px;
+  font-family: "Bordadoras", sans-serif; text-transform: uppercase; font-weight: normal;
+  color: var(--crema); background: var(--rosa); border: 1px solid var(--crema);
+  cursor: pointer; white-space: nowrap;
+}
+.tab > span, .chip > span { display: block; height: 100%; }   /* el interlineado calculado centra el texto en el rectángulo */
+.tab { height: 30px; font-size: 30px; }
+.tab > span { line-height: 1.21; }
+.tab + .tab { margin-left: -1px; }
+.tab.aportar { margin-left: auto; }
+.tab[aria-pressed="true"] { background: var(--azul); }     /* pestaña activa: se funde con la barra y queda con borde */
+.tab:hover, .chip:hover { background: var(--azul); }
+
+/* Categorías y subcategorías (solo en la vista categorías) */
+.cats, .subs { display: none; flex-wrap: wrap; align-items: flex-start; gap: 10px 15px; }
+body[data-modo="categorias"] .cats { display: flex; margin-top: 24px; }
+body[data-modo="categorias"] .subs.abierta { display: flex; margin-top: 16px; }
+.chip { height: 22px; font-size: 28px; }
+.chip > span { line-height: .99; }
+.chip[aria-expanded="true"] { background: var(--azul); }
+.chip.tiene, .chip.sel { background: var(--crema); color: var(--azul); }
+.estado { margin-left: auto; display: flex; align-items: center; gap: 15px; color: var(--crema); font-family: "Bordadoras", sans-serif; text-transform: uppercase; font-size: 28px; line-height: 22px; }
+.estado .chip { height: 22px; }
+
+/* ----- Vista explorar ----- */
+.explorar { position: fixed; inset: 0; z-index: 1; overflow: hidden; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; background: var(--crema); }
+.explorar.arrastrando { cursor: grabbing; }
+.plano { position: absolute; left: 0; top: 0; width: 2905px; height: 1874px; transform-origin: 0 0; will-change: transform; }
+.bordado { position: absolute; left: 0; top: 0; padding: 0; border: 0; background: none; cursor: pointer; display: block; }
+.bordado img { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; -webkit-user-drag: none; transition: transform .3s ease; }
+.bordado:hover img, .bordado:focus-visible img { transform: scale(1.05); }
+.explorar .bordado { position: absolute; }
+body[data-modo="categorias"] .explorar { display: none; }
+
+/* ----- Vista categorías ----- */
+.categorias { display: none; position: relative; }
+body[data-modo="categorias"] .categorias { display: block; }
+.rejilla { position: relative; margin-top: 30px; }
+.rejilla .bordado { transition: transform .55s cubic-bezier(.2, .7, .2, 1), opacity .35s ease; }
+.rejilla .bordado.oculto { opacity: 0; pointer-events: none; }
+.vacio { text-align: center; color: var(--azul); font-size: 36px; padding: 80px 20px; }
+.categorias .pie { margin-top: 60px; }
+
+/* ----- Pantallas más chicas ----- */
+@media (max-width: 1100px) {
+  .barra { padding: 20px 24px 22px; }
+  .tab { height: 26px; font-size: 22px; } .tab > span { line-height: 1.37; }
+  .chip { height: 20px; font-size: 20px; } .chip > span { line-height: 1.18; }
+  .estado { font-size: 20px; }
+  body[data-modo="categorias"] .cats { margin-top: 16px; }
+}
+@media (max-width: 800px) {
+  .barra-fila { flex-wrap: wrap; row-gap: 8px; }
+  .tab.aportar { margin-left: 0; }
+}
+
+
+/* ----- Ficha individual (página) ----- */
+.ficha { display: none; }
+body[data-vista="ficha"] .ficha { display: block; }
+body[data-vista="ficha"] .barra, body[data-vista="ficha"] .explorar, body[data-vista="ficha"] .categorias { display: none !important; }
+body.archivo[data-modo="explorar"][data-vista="ficha"] { overflow: auto; }
+.ficha-pag { padding-top: 46px; }
+.volver {
+  box-sizing: border-box; display: block; height: 30px; padding: 0 10px; margin-left: clamp(20px, 7.15vw, 103px);
+  font-family: "Bordadoras", sans-serif; text-transform: uppercase; font-size: 30px;
+  color: var(--crema); background: var(--rosa); border: 1px solid var(--crema); cursor: pointer; white-space: nowrap;
+}
+.volver > span { display: block; height: 100%; line-height: 1.21; }
+.volver:hover { background: var(--azul); }
+.f-ancho { width: min(1027px, calc(100% - 40px)); margin: 0 auto; }
+.f-cuerpo { display: grid; grid-template-columns: 506px minmax(0, 1fr); margin-top: 87px; }
+.f-img { width: 506px; height: 500px; overflow: hidden; display: grid; place-items: center; }          /* el contenedor queda fijo */
+.f-img { cursor: zoom-in; position: relative; touch-action: pan-y; }
+.f-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; transform-origin: 50% 50%; transition: transform 300ms ease-in-out; will-change: transform; -webkit-user-drag: none; user-select: none; }
+.f-img.zoom img { transform: scale(var(--zoom, 2.5)); }          /* lupa: la foto crece dentro del marco fijo y sigue al cursor (el origen lo mueve el JS) */
+.f-img.zoom { cursor: zoom-out; }
+.f-img.sigue img { transition: transform 300ms ease-in-out, transform-origin 90ms linear; }
+.f-lado { margin-left: 121px; max-width: 382px; display: flex; flex-direction: column; justify-content: space-between; min-height: 500px; }
+.f-lado h2 { color: var(--azul); font-size: clamp(56px, 8.33vw, 120px); line-height: .81; text-align: center; margin-top: -19px; }
+.f-texto { display: grid; gap: 47px; font-size: 16px; line-height: normal; color: #000; }
+.f-cita { margin: 0; font-style: italic; }
+.f-cita[hidden] { display: none; }
+.f-q, .f-qa, .f-rep { margin: 0; }
+.f-qa { text-align: right; }
+.f-tabla { display: grid; grid-template-columns: 47.9% 3.9% 48.2%; aspect-ratio: 1017 / 97; margin-top: 94px;
+  background: url("../assets/icons/detalle-ficha.svg") no-repeat center / 100% 100%; }       /* dibujo de costura del Figma: dos líneas y la vertical */
+.f-col { display: grid; grid-template-rows: 45.4% 54.6%; align-items: center; padding: 0 2px; }
+.f-col .f-onda { display: none; }
+.f-fila { display: flex; justify-content: space-between; gap: 16px; font-size: 16px; line-height: normal; color: #000; }
+.f-fila b { font-weight: 700; }
+.f-fila span { text-align: right; }
+.f-onda { height: 8px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='8'%3E%3Cpath d='M0 4Q4 0 8 4T16 4' fill='none' stroke='%23fd598e' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x center; }
+.f-vert { display: block; }   /* solo ocupa la columna del medio; la vertical ya está en el dibujo */
+.f-otras { margin-top: 90px; text-align: center; font-size: 16px; line-height: normal; }
+.f-otras p { margin: 0 0 6px; }
+.f-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 16px; }
+.f-chip { border: 0; padding: 4px 14px; background: var(--azul); color: var(--crema); font: 400 16px/normal "Open Sans", system-ui, sans-serif; cursor: pointer; }
+.f-chip:hover, .f-chip:focus-visible { background: var(--rosa); }
+.ficha .pie { margin-top: 130px; }
+
+@media (max-width: 900px) {
+  .ficha-pag { padding-top: 24px; }
+  .f-cuerpo { grid-template-columns: 1fr; margin-top: 40px; }
+  .f-img { width: 100%; height: min(100vw, 520px); }
+  .f-lado { margin: 28px 0 0; max-width: none; min-height: 0; gap: 28px; }
+  .f-lado h2 { margin-top: 0; }
+  .f-tabla { grid-template-columns: 1fr; aspect-ratio: auto; background: none; margin-top: 48px; row-gap: 20px; }
+  .f-col { display: flex; flex-direction: column; gap: 20px; padding: 0; }
+  .f-col .f-onda { display: block; }
+  .f-vert { display: none; }
+  .f-img { cursor: default; }
+  .f-otras { margin-top: 56px; }
+  .ficha .pie { margin-top: 80px; }
+}
